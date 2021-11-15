@@ -1,0 +1,114 @@
+﻿<h1>Cómo Usar Sesiones y Variables de Sesión en PHP</h1>
+<p>El manejo de sesiones es un concepto clave en PHP que permite que la información de usuario persista entre todas las páginas de un sitio web o app. En este post, aprenderás los fundamentos para manejar sesiones en PHP. </p>
+<p>Empezaremos con una explicación de cómo funcionan las sesiones y cómo estas están relacionadas con las cookies. Después daremos un vistazo a varios fragmentos de código que demuestran cómo trabajar con sesiones. Aprenderás a crear y destruir sesiones, y a cambiar variables de sesión.</p>
+<h2>¿Qué es una Sesión en PHP?</h2>
+<p>Una sesión es un mecanismo para persistir información en  diferentes páginas web para identificar usuarios mientras estos navegan un sitio o app. Te preguntarás por qué las sesiones son necesarias en un sitio web. Para ver porqué las sesiones son necesarias, tenemos que viajar atrás y ver como esta diseñado el protocolo HTTP.</p>
+<p>El protocolo HTTP es un protocolo sin estado, lo que significa que no hay forma de que un servidor recuerde a un usuario específico entre múltiples peticiones. Por ejemplo, cuando accedes a una página web, el servidor sólo es responsable de proveer el contenido de la página solicitada. Así que cuando accedes a otras páginas en el mismo sitio web, el servidor web interpreta cada petición separadamente, como si no estuvieran relacionadas unas con otras. No hay forma para el servidor de sane que cada petición fue originada por el mismo usuario.</p>
+<p>El siguiente diagrama refleja el protocolo HTTP en pocas palabras.</p>
+<figure class="post_image"><img alt="The HTTP Protocol and a Stateless Request" data-src="https://cms-assets.tutsplus.com/uploads/users/769/posts/31839/image/basics-of-session-handling-the-stateless-way.png"></figure><p>En este modelo, si quieres mostrar información relativa a un usuario específico, deberás autenticar al usuario en cada petición. ¡Imagina que tuvieras que introducir tu nombre de usuario y contraseña en cada página que muestre tu información de perfil!  Sí, sería incómodo y nada práctico,  y aquí es donde las sesiones entran en juego.</p>
+<p>Una sesión permite compartir información entre las diferentes páginas de un único sitio web o app, así que ayuda a mantener el estado. Esto permite al servidor conocer que todas las peticiones se originan desde el mismo usuario, permitiendo al sitio web mostrar información y preferencias específicas de ese usuario.</p>
+<h3>Flujo de login con Sesiones y Cookies</h3>
+<p>Vamos a ver rápidamente un flujo de login común para un sitio web para entender qué ocurre entre bambalinas.</p>
+<ol>
+<li>Un usuario accede a la página de login de un sitio web.</li> <li>Después de enviar el formulario de login, un servidor en el otro extremo autentica la petición revalidando las credenciales que fueron introducidas.</li> <li>Si las credenciales introducidas por el usuario son válidas, el servidor crea una nueva sesión. El servidor genera un número aleatorio único, que es llamado identificador de sesión (session id en inglés). También crea un nuevo fichero en el servidor que es usado para almacenar información específica para dicha sesión.</li> <li>A continuación, el identificador de sesión es enviado de vuelta al usuario, junto con cualquier recurso que este hubiera solicitado. Entre bambalinas, el identificador de sesión es enviado en la cookie <code class="inline">PHPSESSID</code> en la cabecera de respuesta.</li> <li>Cuando el navegador recibe la respuesta del servidor, aparece el encabezado de la cookie <code class="inline">PHPSESSID</code>. Si el navegador permite las cookies, guardará esta cookie <code class="inline">PHPSESSID</code>, que almacena el identificador de sesión que el servidor ha pasado.<br>
+</li> <li>El las subsecuentes peticiones, la cookie <code class="inline">PHPSESSID</code> es devuelta al servidor. Cuando el servidor recibe la cookie <code class="inline">PHPSESSID</code>, intentará inicializar una sesión con dicho identificador de sesión. Esto lo hacer cargando el fichero de sesión que fue creado previamente durante la inicialización de la sesión. Después inicializa la variable <code class="inline">$_SESSION</code>, que es un array super-global, con los datos almacenados en dicho fichero de sesión.</li> </ol>
+<p>De esa forma, los datos de usuario son preservados entre múltiples peticiones y este se mantiene registrado durante toda la sesión.</p>
+<p>El siguiente diagrama refleja cómo el protocolo HTTP trabaja con sesiones.</p>
+<figure class="post_image"><img alt="The HTTP Protocol and a Request With Sessions" data-src="https://cms-assets.tutsplus.com/uploads/users/769/posts/31839/image/basics-of-session-handling-session-way.png"></figure><p>Ahora que has visto una breve introducción a cómo funcionan las sesiones, crearemos unos cuantos ejemplos prácticos para demostrar cómo crear y manipular variables de sesión.<br></p>
+<h2>¿Cómo iniciar una Sesión?</h2>
+<p>En esta sección, discutiremos cómo iniciar una sesión en PHP.</p>
+<p>Cuando quieras tratar con variables de sesión, necesitas asegurarte de que la sesión ya haya empezado. Hay varias formas de iniciar una sesión en PHP.</p>
+<h3>Usa la Función <code class="inline">session_start</code>.</h3>
+<p>Este será el método que verás más a menudo, cuando la sesión es iniciada mediante la función <code class="inline">session_start</code>.</p>
+<pre class="brush: php noskimlinks noskimwords">&lt;?php
+// start a session
+session_start();
+
+// manipulate session variables
+?&gt;</pre>
+<p>Lo importante es que la función <code class="inline">session_start</code> debe ser llamada al principio del script, antes de enviar cualquier salida al navegador. De otra forma, encontrarás el infame error <code class="inline">Headers are already sent</code>.</p>
+<h3>Iniciar una Sesión automáticamente</h3>
+<p>Si existe la necesidad de usar sesiones a lo largo de toda tu aplicación, también puedes optar por iniciar la sesión automáticamente sin necesidad de usar la función <code class="inline">session_start</code>.</p>
+<p>Hay una opción el el archivo de configuración <strong>php.ini</strong> que te permite iniciar una sesión automáticamente para cada petición —<code class="inline">session.auto_start</code>. Por defecto, está fijada a <code class="inline">0</code>, pero puedes fijarla a <code class="inline">1</code> para activar la función de auto inicio.</p>
+<pre class="brush: php noskimlinks noskimwords">session.auto_start = 1</pre>
+<p>Por otro lado, si no tienes acceso al fichero <strong>php.ini</strong>, y estás usando el servidor web Apache, puedes fijar esta variable usando el fichero <strong>.htaccess</strong>.</p>
+<pre class="brush: php noskimlinks noskimwords">php_value session.auto_start 1</pre>
+<p>Si añades la línea anterior al fichero <strong>.htaccess</strong>, iniciará una sesión automáticamente en tu aplicación PHP.</p>
+<h3>¿Cómo obtener un identificador de Sesión?</h3>
+<p>Como discutimos anteriormente, el servidor crea un número único para cada nueva sesión. Si quieres obtener el identificador de sesión, puedes usar la función <code class="inline">session_id</code>, como muestra el siguiente fragmento de código:</p>
+<pre class="brush: php noskimlinks noskimwords">&lt;?php
+session_start();
+echo session_id();
+?&gt;</pre>
+<p>Esto debería darte el identificador de sesión actual. La función <code class="inline">session_id</code> es interesante en porque también puede recibir un argumento— un identificador de sesión. Si quieres reemplazar el identificador de sesión generado por el sistema por el tuyo propio, puedes suministrarlo como el primer argumento de la función <code class="inline">session_id</code>.</p>
+<pre class="brush: php noskimlinks noskimwords">&lt;?php
+session_id(YOUR_SESSION_ID);
+session_start();
+?&gt;</pre>
+<p>Es importante hacer notar que la función <code class="inline">session_id</code> debe estar situada antes que la llamada a <code class="inline">session_start</code> cuando quieras iniciar una sesión con un identificador de sesión personalizado.</p>
+<h2>¿Cómo Crear Variables de Sesión?</h2>
+<p>En esta sección, exploraremos cómo inicializar variables de sesión en PHP.</p>
+<p>Como discutimos anteriormente, una vez que una sesión es iniciada, el array super-global <code class="inline">$_SESSION</code> es inicializado con la correspondiente información de sesión. Por defecto, se inicializa con un array vacío, y puedes almacenar más información usando un par clave-valor.</p>
+<p>Veamos el siguiente script de ejemplo que muestra cómo inicializar las variables de sesión.</p>
+<pre class="brush: php noskimlinks noskimwords">&lt;?php
+// start a session
+session_start();
+
+// initialize session variables
+$_SESSION['logged_in_user_id'] = '1';
+$_SESSION['logged_in_user_name'] = 'Tutsplus';
+
+// access session variables
+echo $_SESSION['logged_in_user_id'];
+echo $_SESSION['logged_in_user_name'];
+?&gt;</pre>
+<p>Como puedes ver, hemos iniciado una sesión al principio del script usando la función <code class="inline">session_start</code>. A continuación, hemos inicializado un par de variables de sesión. Finalmente, hemos accedido a dichas variables usando la super-global <code class="inline">$_SESSION</code>.</p>
+<p>Cuando almacenas datos en una sesión usando la super-global <code class="inline">$_SESSION</code>, finalmente se almacenan en su correspondiente fichero de sesión en el servidor que fue creado cuando la sesión fue iniciada. De esta forma, los datos de sesión son compartidos entre múltiples peticiones.</p>
+<p>Como discutimos, la información de sesión se comparte entre peticiones, y de esta forma las variables de sesión inicializadas en una página pueden ser accedidas desde otras páginas también, hasta que la sesión expira. Generalmente, una sesión expira cuando se cierra el navegador.</p>
+<h2>¿Cómo Modificar y Borrar Variables de Sesión?</h2>
+<p>Puedes modificar y borrar variables creadas previamente en la aplicación de la misma manera que para las variables PHP regulares.</p>
+<p>Veamos cómo modificar variables de sesión.</p>
+<pre class="brush: php noskimlinks noskimwords">&lt;?php
+session_start();
+
+if (!isset($_SESSION['count']))
+{
+  $_SESSION['count'] = 1;
+}
+else
+{
+  ++$_SESSION['count'];
+}
+
+echo $_SESSION['count'];
+?&gt;</pre>
+<p>En el script anterior, hemos comprobado en primer lugar si la variable <code class="inline">$_SESSION[&#x27;count&#x27;]</code> está fijada. Si no lo está , la fijamos a <code class="inline">1</code>, en otro caso la incrementamos en <code class="inline">1</code>. Así que si refrescas la página múltiples veces, deberías ver que ¡el contador se incrementa en uno cada vez! </p>
+<p>Por otro lado, si desearas borrar una variable de sesión, puedes usar la función <code class="inline">unset</code>, como se muestra en el siguiente fragmento de código.</p>
+<pre class="brush: php noskimlinks noskimwords">&lt;?php
+// start a session
+session_start();
+
+// initialize a session variable
+$_SESSION['logged_in_user_id'] = '1';
+
+// unset a session variable
+unset($_SESSION['logged_in_user_id']);
+?&gt;</pre>
+<p> Por lo tanto, ya no puedes acceder a la variables <code class="inline">$_SESSION[‘logged_in_user_id’]</code> ya que se eliminó por la función <code class="inline">unset</code>. Así es como puedes alterar la información de la sesión.</p>
+<h2>¿Cómo Destruir una Sesión?</h2>
+<p>En esta sección, veremos cómo puedes destruir una sesión. En la sección anterior, discutinos la función <code class="inline">unset</code>, que se usa si quieres eliminar variables de sesión específicas. Por otro lado, si quieres eliminar toda la información relacionada con la sesión, puedes usar la función <code class="inline">session_destroy</code>.</p>
+<p>Let’s try to understand how it works using the following example.</p>
+<pre class="brush: php noskimlinks noskimwords">&lt;?php
+// start a session
+session_start();
+
+// assume that we’ve initialized a couple of session variables in the other script already
+
+// destroy everything in this session
+session_destroy();
+?&gt;</pre>
+<p>La función <code class="inline">session_destroy</code> elimina todo lo que se almacena en la sesión actual. Por lo tanto, verás la variable <code class="inline">$_SESSION</code> vacía en las subsecuentes peticiones ya que la función <code class="inline">session_destroy</code> eliminó todos los datos de sesión almacenados en disco.</p>
+<p>Generalmente, usarás la función <code class="inline">session_destroy</code> cuando el usuario va a ser desconectado.</p>
+<h2>Conclusión</h2>
+<p>En este artículo, hemos explorado los fundamentos del tratamiento de sesiones en PHP. Es un concepto clave que permite persistir información entre páginas web.</p>
+<p>En la primera parte del artículo, hemos discutido los conceptos básicos de las sesiones, y más tarde creamos varios ejemplos en PHP para demostrar cómo puedes crear y destruir sesiones así como manipular variables de sesión.</p>
