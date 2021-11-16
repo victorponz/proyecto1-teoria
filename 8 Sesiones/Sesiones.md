@@ -15,49 +15,7 @@ A partir de la definición de la base de datos, creamos la entidad `Usuario`.
 
 Creamos un nuevo repositorio para la entidad `Usuario` en `repository/UsuarioRepository.php`.
 
-En el constructor fijamos tanto la tabla como la entidad.
-
-Y creamos un método `findByUserNameAndPassword` que devuelve el usuario que coincida con las credenciales. 
-
-![image-20191122193021652](assets/image-20191122193021652.png)
-
-## Formulario de login
-
-Para empezar a probar, insertamos un usuario a mano mediante `phpmyadmin` y luego creamos el formulario:
-
-![1543332398462](assets/1543332398462.png)
-
-Lo único que tiene especial este formulario es el tratamiento de `returnToUrl`. Para no perder la redirección, siempre la hemos de pasar de una forma u otra tanto en los enlaces como en el formulario. En los enlaces, como en **¿Todavía no está registrad@?**, la única opción posible es añadirlo como un parámetro en el querystring, como veremos luego en la vista. Pero en el caso del formulario se puede hacer de dos formas:
-
-1. En el querystring, es decir en el `action` del formulario y formará parte del array `$_GET`).
-2. Como un campo `hidden` del formulario en cuyo caso formará parte del array `$_POST`
-
-En el formulario de login (`/login.php`), vamos a hacerlo mediante la segunda opción.
-
-En este formulario vamos a necesitar un nuevo campo de tipo password que todavía no hemos implementado. Es tan sencillo como crear la clase en `Forms/PasswordElement.php`
-
-![image-20191122190553411](assets/image-20191122190553411.png)
-
-Y ya podemos implementar el formulario de login.
-
-![image-20191122190620145](assets/image-20191122190620145.png)
-
-Y ahora hacemos las validaciones:
-
-![image-20191122190651796](assets/image-20191122190651796.png)
-
-Y modificamos la vista para que nos aparezca un mensaje cuando ya está logeado y el formulario cuando no lo está:
-
-![1543345761178](assets/1543345761178.png)
-
-De hecho, como el formulario no se ha de mostrar cuando el usuario ya está logeado, vamos a incluir el código para generar el formulario dentro de un if:
-
-```php
-if (!isset($_SESSION['username'])) {
-    //Código para generar el formulario
-}
-include("./views/login.view.php");   
-```
+En el constructor fijamos tanto la tabla como la entidad así como el validador de la contraseña (tal como se vio en el punto 6 Interfaces y Clases)
 
 ## Formulario de registro
 
@@ -123,6 +81,89 @@ Y ahora el mensaje ya informa correctamente al usuario:
 
 
 
+## Formulario de login
+
+Necesitamos crear lo siguiente:
+
+* Un formulario de login
+* Un método en repositorio de login (`findByUserNameAndPassword`) que os permita obtener el usuario (si existe) con dicho nombre y contraseña.
+* Si todo va bien, iniciar la variable de sesión `$_SESSION['username']` con el nombre del usuario.
+
+**Formulario**
+
+![1543332398462](assets/1543332398462.png)
+
+Lo único que tiene especial este formulario es el tratamiento de `returnToUrl`. Para no perder la redirección, siempre la hemos de pasar de una forma u otra tanto en los enlaces como en el formulario. En los enlaces, como en **¿Todavía no está registrad@?**, la única opción posible es añadirlo como un parámetro en el querystring, como veremos luego en la vista. Pero en el caso del formulario se puede hacer de dos formas:
+
+1. En el querystring, es decir en el `action` del formulario y formará parte del array `$_GET`).
+2. Como un campo `hidden` del formulario en cuyo caso formará parte del array `$_POST`
+
+En el formulario de login (`/login.php`), vamos a hacerlo mediante la segunda opción.
+
+En este formulario **vamos a necesitar un nuevo campo de tipo password** que todavía no hemos implementado. Es tan sencillo como crear la clase en `Forms/PasswordElement.php`
+
+![image-20191122190553411](assets/image-20191122190553411.png)
+
+Y ya podemos implementar el formulario de login.
+
+![image-20191122190620145](assets/image-20191122190620145.png)
+
+Comprobamos si existe el usuario llamando al método `findByUserNameAndPassword`. Fijaos que se comprueba si existe un usuario con dicho nombre 
+
+```php
+ $sql = "SELECT * FROM $this->table WHERE username = :username AND password = :password";
+```
+
+El código quedaría como sigue (es una copia de `executeQuery` pero con parámetros).
+
+![image-20211116192458600](assets/image-20211116192458600.png)
+
+Aunque lo ideal sería hacer un método genérico en la clase `QueryBuilder` que permita realizar cualquier consulta con parámetros:
+
+```php
+abstract class QueryBuilder
+{
+    //Método a añadir
+    public function executeQueryWithParams($sql, $params){
+        try {
+            $pdoStatement = $this->connection->prepare($sql);
+            $pdoStatement->execute($params);
+            $pdoStatement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $this->classEntity);
+            return $pdoStatement->fetchAll();
+        }catch(\PDOException $pdoException){
+            throw new QueryException('No se ha podido ejecutar la consulta solicitada: ' . $pdoException->getMessage());
+        }
+    }
+```
+
+Y luego refactorizamos el método en `UsuarioRepositorio`:
+
+```php
+public function findByUserNameAndPassword(string $username, string $password): Usuario{
+    $sql = "SELECT * FROM $this->table WHERE username = :username AND password = :password";
+    $parameters = ['username' => $username,
+                  'password' => $password];
+    try {
+        $result = $this->executeQueryWithParams($sql, $parameters);
+        if (empty($result)){
+            throw new NotFoundException("No se ha encontrado ningún usuario con esas credenciales");
+        }
+        return $result[0];
+    }catch(\PDOException $pdoException){
+        throw new QueryException('No se ha podido ejecutar la consulta solicitada: ' . $pdoException->getMessage());
+    }
+    return null;
+}
+```
+
+Y ahora hacemos las validaciones:
+
+![image-20191122190651796](assets/image-20191122190651796.png)
+
+Y modificamos la vista para que nos aparezca un mensaje cuando ya está logeado y el formulario cuando no lo está:
+
+![1543345761178](assets/1543345761178.png)
+
 ## Logout
 
 Simplemente hay que cerrar la sesión y redirigir a otra página.
@@ -150,7 +191,10 @@ Vamos a modificar la navegación:
 
 Sólo hay que comprobar si el usuario está registrado en la sesión. Así que sustituimos los enlaces a Asociados y Galería por el siguiente código:
 
-<script src="https://gist.github.com/victorponz/9250de4815fbf50ef697363f9acfc25b.js"></script>
+![image-20211116191025017](assets/image-20211116191025017.png)
+
+
+
 > **IMPORTANTE**
 > No os olvidéis de hacer `session_start()` al principio de todos los controladores.
 
@@ -245,8 +289,13 @@ $2y$10$9fMjJx8i.dLPU75Sx05/x.pwrvw2rQXhOd7mfyBcTSB/iJn4lb1Lm
 Pero este hash, no siempre es el mismo porque el propio algoritmo le aplica un salt distinto cada vez. Por tanto la siguiente vez, nos puede devolver:
 
 ```
-$2y$10$BHLFwS/bJk0CWpFStcuaM.dnY/c3ck8oXF5wf4DrWcAqEmSgJTxfa
+$2y$10$vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa
 ```
+
+> El significado del hash es el siguiente: Tiene tres campos delimitados por `$`
+> * **2y** indentifica la versión de bcrypt utilizada
+> * **10** Es el factor coste, 2¹⁰ iteraciones; es decir 1024 rondas)
+> * **vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa** es la sal y el texto cifrado concatenados y codificados en Base-64. Los primeros 22 caracteres descodificados en un valor de 16 bytes corresponden a la sal. El resto son los caracteres cifrados a ser comparados para la autenticación.
 
 Ahora mismo, `PASSWORD_DEFAULT` se corresponde con `PASSWORD_BCRYPT`, pero puede que en un futuro éste cambie. Así que no se recomienda usar `PASSWORD_DEFAULT`.
 
@@ -278,7 +327,7 @@ Así que el método `save()` quedaría como sigue;
 
 Y modificamos `findByUserNameAndPassword` para que use `passwordVerify`.
 
-![image-20191122194927485](assets/image-20191122194927485.png)
+![image-20211116193516252](assets/image-20211116193516252.png)
 
 Ahora para usar un algoritmo de encriptación, simplemente se lo inyectamos en el constructor:
 
@@ -318,7 +367,7 @@ E inyectar esta clase en el constructor de `UsuarioRepositorio`.
 
 
 
-Más información sobre encriptación en PHP:
+**Más información sobre encriptación en PHP:**
 
 https://deliciousbrains.com/php-encryption-methods/
 
