@@ -11,7 +11,7 @@ Vamos a usar una base de datos, llamada **proyecto1**
 
 Y creamos un usuario para la base de datos que **sólo tenga privilegios sobre datos**:
 
-<video src="assets/usuario.m4v" />
+<video src="assets/usuario.m4v" controls="controls"/>
 Crear la tabla **imagenes**
 
 ```sql
