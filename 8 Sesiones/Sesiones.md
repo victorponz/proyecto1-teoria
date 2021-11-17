@@ -28,7 +28,7 @@ Y la parte de validación:
 
 ![1543345831604](assets/1543345831604.png)
 
-Y modificamos la vista (`register.view.php`), que es muy parecida a `login.view.php`
+Y modificamos la vista (`register.view.php`):
 
 ```php
 <?php
@@ -286,13 +286,16 @@ Produciría el siguiente hash:
 $2y$10$9fMjJx8i.dLPU75Sx05/x.pwrvw2rQXhOd7mfyBcTSB/iJn4lb1Lm
 ```
 
-Pero este hash, no siempre es el mismo porque el propio algoritmo le aplica un salt distinto cada vez. Por tanto la siguiente vez, nos puede devolver:
+Pero este hash, no siempre es el mismo porque el propio algoritmo **bcrypt** le aplica un salt distinto cada vez. Por tanto la siguiente vez, nos puede devolver:
 
 ```
 $2y$10$vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa
 ```
 
-> El significado del hash es el siguiente: Tiene tres campos delimitados por `$`
+> El significado del hash es el siguiente: 
+>
+> Tiene tres campos delimitados por `$`:
+>
 > * **2y** indentifica la versión de bcrypt utilizada
 > * **10** Es el factor coste, 2¹⁰ iteraciones; es decir 1024 rondas)
 > * **vI8aWBnW3fID.ZQ4/zo1G.q1lRps.9cGLcZEiGDMVr5yUP1KUOYTa** es la sal y el texto cifrado concatenados y codificados en Base-64. Los primeros 22 caracteres descodificados en un valor de 16 bytes corresponden a la sal. El resto son los caracteres cifrados a ser comparados para la autenticación.
@@ -331,7 +334,7 @@ Y modificamos `findByUserNameAndPassword` para que use `passwordVerify`.
 
 Ahora para usar un algoritmo de encriptación, simplemente se lo inyectamos en el constructor:
 
-> **Nota**. Antes de cambiar el algoritmo de encriptación, debemos borrar todos los usuarios de la base de datos. De otra forma los antiguos no se podrán logear. En producción es evidente que no se puede proceder de esta forma. Os dejo un artículo de [stack overflow](https://stackoverflow.com/questions/5249350/changing-encryption-algorithm) sobre el tema.
+> **Nota**. Antes de cambiar el algoritmo de encriptación, debemos borrar todos los usuarios de la base de datos. De otra forma los antiguos no se podrán logear. En **producción** es evidente que no se puede proceder de esta forma. Os dejo un artículo de [stack overflow](https://stackoverflow.com/questions/5249350/changing-encryption-algorithm) sobre el tema.
 
 Por ejemplo, en `login.php` y `register.php`
 
