@@ -11,7 +11,8 @@ Vamos a usar una base de datos, llamada **proyecto1**
 
 Y creamos un usuario para la base de datos que **sólo tenga privilegios sobre datos**:
 
-<video src="assets/usuario.m4v" controls="controls"/>
+<video src="assets/usuario.m4v" controls="controlsfca"/>
+
 Crear la tabla **imagenes**
 
 ```sql
@@ -621,7 +622,6 @@ class Categoria extends Entity
     private $numImagenes;
 
     public function __construct(string $nombre = '', int $numImagenes = 0){
-        parent::__construct();
         $this->id = null;
         $this->nombre = $nombre;
         $this->numImagenes = $numImagenes;
