@@ -1,0 +1,13 @@
+{
+    "name": "victor/proyecto1",
+    "authors": [
+        {
+            "name": "Víctor Ponz",
+            "email": "victorponz@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {"ProyectoWeb\\": "src"}
+    }
+}
