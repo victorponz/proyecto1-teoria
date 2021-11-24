@@ -23,10 +23,55 @@ Este formulario (`/register.php`) nos permite grabar un nuevo usuario en la base
 
 En este caso, fijaos que `returnToUrl` lo paso en el `action` del formulario.
 
-<script src="https://gist.github.com/victorponz/bb580c4db31000a8f1eddaf8aac9b8b6.js"></script>
+```php
+    session_start();
+
+    $info = "";
+    $nombreUsuario = new InputElement('text');
+    $nombreUsuario
+      ->setName('username')
+      ->setId('username');
+
+    $nombreUsuario->setValidator(new NotEmptyValidator('El nombre de usuari@ no puede estar vacío', true));
+    $userWrapper = new MyFormControl($nombreUsuario, 'Nombre de usuari@', 'col-xs-12');
+
+    $email = new EmailElement();
+    $email
+      ->setName('email')
+      ->setId('email');
+    $emailWrapper = new MyFormControl($email, 'Correo electrónico', 'col-xs-12');
+
+    $pv = new NotEmptyValidator('La contraseña no puede estar vacía', true);
+
+    $pass = new PasswordElement();
+    $pass
+    ->setName('password')
+    ->setId('password');
+    
+    $pass->setValidator($pv);
+    $passWrapper = new MyFormControl($pass, 'Contraseña', 'col-xs-12');
+
+    $repite = new PasswordElement();
+    $repite
+    ->setName('repite_password')
+    ->setId('repite_password');
+    $repite->setValidator(new PasswordMatchValidator($pass, 'Las contraseñas no coinciden', true));
+    $repiteWrapper = new MyFormControl($repite, 'Repita la contraseña', 'col-xs-12');
+
+    $b = new ButtonElement('Registro', '', '', 'pull-right btn btn-lg sr-button');
+    $form = new FormElement();
+    $form
+      ->appendChild($userWrapper)
+      ->appendChild($emailWrapper)
+      ->appendChild($passWrapper)
+      ->appendChild($repiteWrapper)
+      ->appendChild($b);
+
+```
+
 Y la parte de validación:
 
-![1543345831604](assets/1543345831604.png)
+![image-20211124090542575](assets/image-20211124090542575.png)
 
 Y modificamos la vista (`register.view.php`):
 
@@ -47,7 +92,7 @@ Y modificamos la vista (`register.view.php`):
                     include __DIR__ . "/partials/show-messages.part.php";
                 ?>
                 <?=$form->render();?>
-                <a href='/login.php<?=(!empty($hrefReturnToUrl) ? '?returnToUrl=' . $hrefReturnToUrl : '')?>'>
+                <a href='/login.php'>
                     ¿Ya eres miembro? Acceso a usuari@s
                 </a>
             <?php endif?>
@@ -73,13 +118,27 @@ Los errores de `Duplicate entry` tienen el código de error **1062**. Para soluc
 
 Por ejemplo, 
 
-![1543345887523](assets/1543345887523.png)
+![image-20211124113212490](assets/image-20211124113212490.png)
 
 Y ahora el mensaje ya informa correctamente al usuario:
 
 ![1543335850809](assets/1543335850809.png)
 
 
+
+## Logout
+
+Simplemente hay que cerrar la sesión y redirigir a otra página.
+
+```php
+<?php
+  session_start();
+  session_unset();
+  session_destroy();
+  
+header('location: /');
+  
+```
 
 ## Formulario de login
 
@@ -93,92 +152,21 @@ Necesitamos crear lo siguiente:
 
 ![1543332398462](assets/1543332398462.png)
 
-Lo único que tiene especial este formulario es el tratamiento de `returnToUrl`. Para no perder la redirección, siempre la hemos de pasar de una forma u otra tanto en los enlaces como en el formulario. En los enlaces, como en **¿Todavía no está registrad@?**, la única opción posible es añadirlo como un parámetro en el querystring, como veremos luego en la vista. Pero en el caso del formulario se puede hacer de dos formas:
-
-1. En el querystring, es decir en el `action` del formulario y formará parte del array `$_GET`).
-2. Como un campo `hidden` del formulario en cuyo caso formará parte del array `$_POST`
-
-En el formulario de login (`/login.php`), vamos a hacerlo mediante la segunda opción.
-
-En este formulario **vamos a necesitar un nuevo campo de tipo password** que todavía no hemos implementado. Es tan sencillo como crear la clase en `Forms/PasswordElement.php`
-
-![image-20191122190553411](assets/image-20191122190553411.png)
-
 Y ya podemos implementar el formulario de login.
 
-![image-20191122190620145](assets/image-20191122190620145.png)
-
-Comprobamos si existe el usuario llamando al método `findByUserNameAndPassword`. Fijaos que se comprueba si existe un usuario con dicho nombre 
-
-```php
- $sql = "SELECT * FROM $this->table WHERE username = :username AND password = :password";
-```
+![image-20211124083903850](assets/image-20211124083903850.png)
 
 El código quedaría como sigue (es una copia de `executeQuery` pero con parámetros).
 
 ![image-20211116192458600](assets/image-20211116192458600.png)
 
-Aunque lo ideal sería hacer un método genérico en la clase `QueryBuilder` que permita realizar cualquier consulta con parámetros:
-
-```php
-abstract class QueryBuilder
-{
-    //Método a añadir
-    public function executeQueryWithParams($sql, $params){
-        try {
-            $pdoStatement = $this->connection->prepare($sql);
-            $pdoStatement->execute($params);
-            $pdoStatement->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, $this->classEntity);
-            return $pdoStatement->fetchAll();
-        }catch(\PDOException $pdoException){
-            throw new QueryException('No se ha podido ejecutar la consulta solicitada: ' . $pdoException->getMessage());
-        }
-    }
-```
-
-Y luego refactorizamos el método en `UsuarioRepositorio`:
-
-```php
-public function findByUserNameAndPassword(string $username, string $password): Usuario{
-    $sql = "SELECT * FROM $this->table WHERE username = :username AND password = :password";
-    $parameters = ['username' => $username,
-                  'password' => $password];
-    try {
-        $result = $this->executeQueryWithParams($sql, $parameters);
-        if (empty($result)){
-            throw new NotFoundException("No se ha encontrado ningún usuario con esas credenciales");
-        }
-        return $result[0];
-    }catch(\PDOException $pdoException){
-        throw new QueryException('No se ha podido ejecutar la consulta solicitada: ' . $pdoException->getMessage());
-    }
-    return null;
-}
-```
-
 Y ahora hacemos las validaciones:
 
-![image-20191122190651796](assets/image-20191122190651796.png)
+![image-20211124084118023](assets/image-20211124084118023.png)
 
 Y modificamos la vista para que nos aparezca un mensaje cuando ya está logeado y el formulario cuando no lo está:
 
 ![1543345761178](assets/1543345761178.png)
-
-## Logout
-
-Simplemente hay que cerrar la sesión y redirigir a otra página.
-
-```php
-<?php
-  session_start();
-  session_unset();
-  session_destroy();
-  if (isset($_GET['returnToUrl'])) {
-    header('location: ' . $_GET['returnToUrl']);
-  } else {
-    header('location: /');
-  }
-```
 
 ## Navegación
 
@@ -204,7 +192,7 @@ Falta impedir que usuarios no registrados entren en `Galería` y `Asociados`. Es
 <?php
      session_start();
      if (!isset($_SESSION['username'])) {
-       header('location: /login.php?returnToUrl=/galeria.php');
+       header('location: /login.php');
      }
 ```
 
@@ -214,7 +202,7 @@ en `galeria.php` y
 <?php
      session_start();
      if (!isset($_SESSION['username'])) {
-       header('location: /login.php?returnToUrl=/asociados.php');
+       header('location: /login.php');
      }
    
 ```
@@ -328,6 +316,17 @@ Así que el método `save()` quedaría como sigue;
 
 ![image-20191122195707169](assets/image-20191122195707169.png)
 
+Aunque se puede refactorizar como:
+
+```php
+public function save(Entity $entity)
+{
+    $parameters = $entity->toArray();
+    $entity->setPassword($this->passwordGenerator::encrypt($parameters['password']));
+    parent::save($entity);    
+}
+```
+
 Y modificamos `findByUserNameAndPassword` para que use `passwordVerify`.
 
 ![image-20211116193516252](assets/image-20211116193516252.png)
@@ -386,7 +385,6 @@ Víctor Ponz victorponz@gmail.com
 Este material está licenciado bajo una licencia [Creative Commons, Attribution-NonCommercial-ShareAlike](https://creativecommons.org/licenses/by-nc-sa/3.0/)
 
 ![](https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png)
-
 
 
 

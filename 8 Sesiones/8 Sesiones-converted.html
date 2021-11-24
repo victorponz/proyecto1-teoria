@@ -743,8 +743,8 @@ body.typora-export{
 <span class='md-toc-item md-toc-h2'><a id='anchor-heading-2' title='Repositorio' class="md-toc-inner" style="cursor: pointer;" href="#repositorio">Repositorio</a></span>
 <span class='md-toc-item md-toc-h2'><a id='anchor-heading-3' title='Formulario de registro' class="md-toc-inner" style="cursor: pointer;" href="#formulario-de-registro">Formulario de registro</a></span>
 <span class='md-toc-item md-toc-h3'><a id='anchor-heading-4' title='Restricciones en la base de datos' class="md-toc-inner" style="cursor: pointer;" href="#restricciones-en-la-base-de-datos">Restricciones en la base de datos</a></span>
-<span class='md-toc-item md-toc-h2'><a id='anchor-heading-5' title='Formulario de login' class="md-toc-inner" style="cursor: pointer;" href="#formulario-de-login">Formulario de login</a></span>
-<span class='md-toc-item md-toc-h2'><a id='anchor-heading-6' title='Logout' class="md-toc-inner" style="cursor: pointer;" href="#logout">Logout</a></span>
+<span class='md-toc-item md-toc-h2'><a id='anchor-heading-5' title='Logout' class="md-toc-inner" style="cursor: pointer;" href="#logout">Logout</a></span>
+<span class='md-toc-item md-toc-h2'><a id='anchor-heading-6' title='Formulario de login' class="md-toc-inner" style="cursor: pointer;" href="#formulario-de-login">Formulario de login</a></span>
 <span class='md-toc-item md-toc-h2'><a id='anchor-heading-7' title='Navegación' class="md-toc-inner" style="cursor: pointer;" href="#navegación">Navegación</a></span>
 <span class='md-toc-item md-toc-h2'><a id='anchor-heading-8' title='Encriptación' class="md-toc-inner" style="cursor: pointer;" href="#encriptación">Encriptación</a></span>
 <span class='md-toc-item md-toc-h2'><a id='anchor-heading-9' title='Algoritmos de encriptación' class="md-toc-inner" style="cursor: pointer;" href="#algoritmos-de-encriptación">Algoritmos de encriptación</a></span>
@@ -779,16 +779,79 @@ body.typora-export{
 </h2>
 <p><span>Este formulario (</span><code>/register.php</code><span>) nos permite grabar un nuevo usuario en la base de datos.</span></p>
 <p><span>En este caso, fijaos que </span><code>returnToUrl</code><span> lo paso en el </span><code>action</code><span> del formulario.</span></p>
-<script src="https://gist.github.com/victorponz/bb580c4db31000a8f1eddaf8aac9b8b6.js"></script><p><span>Y la parte de validación:</span></p>
-<p><img src="assets/1543345831604.png" referrerpolicy="no-referrer" alt="1543345831604"></p>
-<p><span>Y modificamos la vista (</span><code>register.view.php</code><span>):</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.9974px; left: 47.1615px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99741px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
 <div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
-<div class="CodeMirror-measure"><span><span>​</span>x</span></div>
+<div class="CodeMirror-measure"></div>
+<div class="CodeMirror-measure"></div>
+<div style="position: relative; z-index: 1;"></div>
+<div class="CodeMirror-code" role="presentation" style="">
+<div class="CodeMirror-activeline" style="position: relative;">
+<div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
+<div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">session_start</span>();</span></pre>
+</div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$info</span> <span class="cm-operator">=</span> <span class="cm-string">""</span>;</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$nombreUsuario</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">InputElement</span>(<span class="cm-string">'text'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$nombreUsuario</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">setName</span>(<span class="cm-string">'username'</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">setId</span>(<span class="cm-string">'username'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$nombreUsuario</span><span class="cm-operator">-&gt;</span><span class="cm-variable">setValidator</span>(<span class="cm-keyword">new</span> <span class="cm-variable">NotEmptyValidator</span>(<span class="cm-string">'El nombre de usuari@ no puede estar vacío'</span>, <span class="cm-atom">true</span>));</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$userWrapper</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">MyFormControl</span>(<span class="cm-variable-2">$nombreUsuario</span>, <span class="cm-string">'Nombre de usuari@'</span>, <span class="cm-string">'col-xs-12'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$email</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">EmailElement</span>();</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$email</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">setName</span>(<span class="cm-string">'email'</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">setId</span>(<span class="cm-string">'email'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$emailWrapper</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">MyFormControl</span>(<span class="cm-variable-2">$email</span>, <span class="cm-string">'Correo electrónico'</span>, <span class="cm-string">'col-xs-12'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$pv</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">NotEmptyValidator</span>(<span class="cm-string">'La contraseña no puede estar vacía'</span>, <span class="cm-atom">true</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$pass</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">PasswordElement</span>();</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$pass</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-operator">-&gt;</span><span class="cm-variable">setName</span>(<span class="cm-string">'password'</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-operator">-&gt;</span><span class="cm-variable">setId</span>(<span class="cm-string">'password'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    </span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$pass</span><span class="cm-operator">-&gt;</span><span class="cm-variable">setValidator</span>(<span class="cm-variable-2">$pv</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$passWrapper</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">MyFormControl</span>(<span class="cm-variable-2">$pass</span>, <span class="cm-string">'Contraseña'</span>, <span class="cm-string">'col-xs-12'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$repite</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">PasswordElement</span>();</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$repite</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-operator">-&gt;</span><span class="cm-variable">setName</span>(<span class="cm-string">'repite_password'</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-operator">-&gt;</span><span class="cm-variable">setId</span>(<span class="cm-string">'repite_password'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$repite</span><span class="cm-operator">-&gt;</span><span class="cm-variable">setValidator</span>(<span class="cm-keyword">new</span> <span class="cm-variable">PasswordMatchValidator</span>(<span class="cm-variable-2">$pass</span>, <span class="cm-string">'Las contraseñas no coinciden'</span>, <span class="cm-atom">true</span>));</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$repiteWrapper</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">MyFormControl</span>(<span class="cm-variable-2">$repite</span>, <span class="cm-string">'Repita la contraseña'</span>, <span class="cm-string">'col-xs-12'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$b</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">ButtonElement</span>(<span class="cm-string">'Registro'</span>, <span class="cm-string">''</span>, <span class="cm-string">''</span>, <span class="cm-string">'pull-right btn btn-lg sr-button'</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$form</span> <span class="cm-operator">=</span> <span class="cm-keyword">new</span> <span class="cm-variable">FormElement</span>();</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$form</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">appendChild</span>(<span class="cm-variable-2">$userWrapper</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">appendChild</span>(<span class="cm-variable-2">$emailWrapper</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">appendChild</span>(<span class="cm-variable-2">$passWrapper</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">appendChild</span>(<span class="cm-variable-2">$repiteWrapper</span>)</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">      <span class="cm-operator">-&gt;</span><span class="cm-variable">appendChild</span>(<span class="cm-variable-2">$b</span>);</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+</div>
+</div></div></div></div>
+<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 1022px;"></div>
+<div class="CodeMirror-gutters" style="display: none; height: 1022px;"></div>
+</div>
+</div></pre>
+<p><span>Y la parte de validación:</span></p>
+<p><img src="assets/image-20211124090542575.png" referrerpolicy="no-referrer" alt="image-20211124090542575"></p>
+<p><span>Y modificamos la vista (</span><code>register.view.php</code><span>):</span></p>
+<pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
+<div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
+<div class="CodeMirror-scroll" tabindex="-1">
+<div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
+<div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div>
 <div class="CodeMirror-measure"></div>
 <div style="position: relative; z-index: 1;"></div>
 <div class="CodeMirror-code" role="presentation" style="">
@@ -812,7 +875,7 @@ body.typora-export{
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                    <span class="cm-keyword">include</span> <span class="cm-atom">__DIR__</span> . <span class="cm-string">"/partials/show-messages.part.php"</span>;</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">?&gt;</span></span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;?=</span><span class="cm-variable-2">$form</span><span class="cm-operator">-&gt;</span><span class="cm-variable">render</span>();<span class="cm-operator">?&gt;</span></span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;</span><span class="cm-variable">a</span> <span class="cm-variable">href</span><span class="cm-operator">=</span><span class="cm-string">'/login.php&lt;?=(!empty($hrefReturnToUrl) ? '</span><span class="cm-operator">?</span><span class="cm-variable">returnToUrl</span><span class="cm-operator">=</span><span class="cm-string">' . $hrefReturnToUrl : '')?&gt;'</span><span class="cm-operator">&gt;</span></span></pre>
+<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;</span><span class="cm-variable">a</span> <span class="cm-variable">href</span><span class="cm-operator">=</span><span class="cm-string">'/login.php'</span><span class="cm-operator">&gt;</span></span></pre></div>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                    <span class="cm-variable">¿Ya</span> <span class="cm-variable">eres</span> <span class="cm-variable">miembro</span><span class="cm-operator">?</span> <span class="cm-variable">Acceso</span> <span class="cm-variable">a</span> <span class="cm-variable">usuari@s</span></span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;/</span><span class="cm-variable">a</span><span class="cm-operator">&gt;</span></span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-operator">&lt;?</span><span class="cm-variable">php</span> <span class="cm-keyword">endif</span><span class="cm-operator">?&gt;</span></span></pre>
@@ -826,8 +889,8 @@ body.typora-export{
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">?&gt;</span></span></pre>
 </div>
 </div></div></div></div>
-<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 661px;"></div>
-<div class="CodeMirror-gutters" style="display: none; height: 661px;"></div>
+<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 638px;"></div>
+<div class="CodeMirror-gutters" style="display: none; height: 638px;"></div>
 </div>
 </div></pre>
 <h3 id="heading-4">
@@ -838,141 +901,16 @@ body.typora-export{
 <p><span>Pero este mensaje no es </span><strong><span>User Friendly</span></strong><span>, así que vamos a mostrar un mensaje adecuado dependiendo del mensaje de error que haya devuelto la excepción.</span></p>
 <p><span>Los errores de </span><code>Duplicate entry</code><span> tienen el código de error </span><strong><span>1062</span></strong><span>. Para solucionarlo de una manera casera (la solución real es más elaborada que la mostrada a continuación) vamos a </span><em><span>parsear</span></em><span> el mensaje que nos devuelve la excepción.</span></p>
 <p><span>Por ejemplo, </span></p>
-<p><img src="assets/1543345887523.png" referrerpolicy="no-referrer" alt="1543345887523"></p>
+<p><img src="assets/image-20211124113212490.png" referrerpolicy="no-referrer" alt="image-20211124113212490"></p>
 <p><span>Y ahora el mensaje ya informa correctamente al usuario:</span></p>
 <p><img src="assets/1543335850809.png" referrerpolicy="no-referrer" alt="1543335850809"></p>
 <p> </p>
 <h2 id="heading-5">
-<a name="formulario-de-login" class="md-header-anchor"></a><span>Formulario de login</span>
-</h2>
-<p><span>Necesitamos crear lo siguiente:</span></p>
-<ul>
-<li><span>Un formulario de login</span></li>
-<li>
-<span>Un método en repositorio de login (</span><code>findByUserNameAndPassword</code><span>) que os permita obtener el usuario (si existe) con dicho nombre y contraseña.</span>
-</li>
-<li>
-<span>Si todo va bien, iniciar la variable de sesión </span><code>$_SESSION['username']</code><span> con el nombre del usuario.</span>
-</li>
-</ul>
-<p><strong><span>Formulario</span></strong></p>
-<p><img src="assets/1543332398462.png" referrerpolicy="no-referrer" alt="1543332398462"></p>
-<p><span>Lo único que tiene especial este formulario es el tratamiento de </span><code>returnToUrl</code><span>. Para no perder la redirección, siempre la hemos de pasar de una forma u otra tanto en los enlaces como en el formulario. En los enlaces, como en </span><strong><span>¿Todavía no está registrad@?</span></strong><span>, la única opción posible es añadirlo como un parámetro en el querystring, como veremos luego en la vista. Pero en el caso del formulario se puede hacer de dos formas:</span></p>
-<ol start="">
-<li>
-<span>En el querystring, es decir en el </span><code>action</code><span> del formulario y formará parte del array </span><code>$_GET</code><span>).</span>
-</li>
-<li>
-<span>Como un campo </span><code>hidden</code><span> del formulario en cuyo caso formará parte del array </span><code>$_POST</code>
-</li>
-</ol>
-<p><span>En el formulario de login (</span><code>/login.php</code><span>), vamos a hacerlo mediante la segunda opción.</span></p>
-<p><span>En este formulario </span><strong><span>vamos a necesitar un nuevo campo de tipo password</span></strong><span> que todavía no hemos implementado. Es tan sencillo como crear la clase en </span><code>Forms/PasswordElement.php</code></p>
-<p><img src="assets/image-20191122190553411.png" referrerpolicy="no-referrer" alt="image-20191122190553411"></p>
-<p><span>Y ya podemos implementar el formulario de login.</span></p>
-<p><img src="assets/image-20191122190620145.png" referrerpolicy="no-referrer" alt="image-20191122190620145"></p>
-<p><span>Comprobamos si existe el usuario llamando al método </span><code>findByUserNameAndPassword</code><span>. Fijaos que se comprueba si existe un usuario con dicho nombre </span></p>
-<pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99731px; left: 3.99744px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
-<div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
-<div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
-<div class="CodeMirror-scroll" tabindex="-1">
-<div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
-<div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div>
-<div class="CodeMirror-measure"></div>
-<div style="position: relative; z-index: 1;"></div>
-<div class="CodeMirror-code" role="presentation"><div class="CodeMirror-activeline" style="position: relative;">
-<div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
-<div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"> <span class="cm-variable-2">$sql</span> <span class="cm-operator">=</span> <span class="cm-string">"SELECT * FROM </span><span class="cm-variable-2">$this</span>-&gt;<span class="cm-variable">table</span> <span class="cm-string">WHERE username = :username AND password = :password"</span>;</span></pre>
-</div></div>
-</div></div></div></div>
-<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 53px;"></div>
-<div class="CodeMirror-gutters" style="display: none; height: 53px;"></div>
-</div>
-</div></pre>
-<p><span>El código quedaría como sigue (es una copia de </span><code>executeQuery</code><span> pero con parámetros).</span></p>
-<p><img src="assets/image-20211116192458600.png" referrerpolicy="no-referrer" alt="image-20211116192458600"></p>
-<p><span>Aunque lo ideal sería hacer un método genérico en la clase </span><code>QueryBuilder</code><span> que permita realizar cualquier consulta con parámetros:</span></p>
-<pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99731px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
-<div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
-<div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
-<div class="CodeMirror-scroll" tabindex="-1">
-<div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
-<div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div>
-<div class="CodeMirror-measure"></div>
-<div style="position: relative; z-index: 1;"></div>
-<div class="CodeMirror-code" role="presentation" style="">
-<div class="CodeMirror-activeline" style="position: relative;">
-<div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
-<div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">abstract</span> <span class="cm-keyword">class</span> <span class="cm-def">QueryBuilder</span></span></pre>
-</div>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-comment">//Método a añadir</span></span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">public</span> <span class="cm-keyword">function</span> <span class="cm-def">executeQueryWithParams</span>(<span class="cm-variable-2">$sql</span>, <span class="cm-variable-2">$params</span>){</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">try</span> {</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-variable-2">$pdoStatement</span> <span class="cm-operator">=</span> <span class="cm-variable-2">$this</span><span class="cm-operator">-&gt;</span><span class="cm-variable">connection</span><span class="cm-operator">-&gt;</span><span class="cm-variable">prepare</span>(<span class="cm-variable-2">$sql</span>);</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-variable-2">$pdoStatement</span><span class="cm-operator">-&gt;</span><span class="cm-variable">execute</span>(<span class="cm-variable-2">$params</span>);</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-variable-2">$pdoStatement</span><span class="cm-operator">-&gt;</span><span class="cm-variable">setFetchMode</span>(<span class="cm-variable">\PDO</span>::<span class="cm-variable">FETCH_CLASS</span> <span class="cm-operator">|</span> <span class="cm-variable">\PDO</span>::<span class="cm-variable">FETCH_PROPS_LATE</span>, <span class="cm-variable-2">$this</span><span class="cm-operator">-&gt;</span><span class="cm-variable">classEntity</span>);</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-keyword">return</span> <span class="cm-variable-2">$pdoStatement</span><span class="cm-operator">-&gt;</span><span class="cm-variable">fetchAll</span>();</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        }<span class="cm-keyword">catch</span>(<span class="cm-variable">\PDOException</span> <span class="cm-variable-2">$pdoException</span>){</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-keyword">throw</span> <span class="cm-keyword">new</span> <span class="cm-variable">QueryException</span>(<span class="cm-string">'No se ha podido ejecutar la consulta solicitada: '</span> . <span class="cm-variable-2">$pdoException</span><span class="cm-operator">-&gt;</span><span class="cm-variable">getMessage</span>());</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        }</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    }</span></pre>
-</div>
-</div></div></div></div>
-<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 346px;"></div>
-<div class="CodeMirror-gutters" style="display: none; height: 346px;"></div>
-</div>
-</div></pre>
-<p><span>Y luego refactorizamos el método en </span><code>UsuarioRepositorio</code><span>:</span></p>
-<pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99731px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
-<div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
-<div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
-<div class="CodeMirror-scroll" tabindex="-1">
-<div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
-<div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div>
-<div class="CodeMirror-measure"></div>
-<div style="position: relative; z-index: 1;"></div>
-<div class="CodeMirror-code" role="presentation" style="">
-<div class="CodeMirror-activeline" style="position: relative;">
-<div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
-<div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">function</span> <span class="cm-def">findByUserNameAndPassword</span>(<span class="cm-variable">string</span> <span class="cm-variable-2">$username</span>, <span class="cm-variable">string</span> <span class="cm-variable-2">$password</span>): <span class="cm-variable">Usuario</span>{</span></pre>
-</div>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$sql</span> <span class="cm-operator">=</span> <span class="cm-string">"SELECT * FROM </span><span class="cm-variable-2">$this</span>-&gt;<span class="cm-variable">table</span> <span class="cm-string">WHERE username = :username AND password = :password"</span>;</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$parameters</span> <span class="cm-operator">=</span> [<span class="cm-string">'username'</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">$username</span>,</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                  <span class="cm-string">'password'</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">$password</span>];</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">try</span> {</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-variable-2">$result</span> <span class="cm-operator">=</span> <span class="cm-variable-2">$this</span><span class="cm-operator">-&gt;</span><span class="cm-variable">executeQueryWithParams</span>(<span class="cm-variable-2">$sql</span>, <span class="cm-variable-2">$parameters</span>);</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">if</span> (<span class="cm-keyword">empty</span>(<span class="cm-variable-2">$result</span>)){</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-keyword">throw</span> <span class="cm-keyword">new</span> <span class="cm-variable">NotFoundException</span>(<span class="cm-string">"No se ha encontrado ningún usuario con esas credenciales"</span>);</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        }</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">return</span> <span class="cm-variable-2">$result</span>[<span class="cm-number">0</span>];</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    }<span class="cm-keyword">catch</span>(<span class="cm-variable">\PDOException</span> <span class="cm-variable-2">$pdoException</span>){</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-keyword">throw</span> <span class="cm-keyword">new</span> <span class="cm-variable">QueryException</span>(<span class="cm-string">'No se ha podido ejecutar la consulta solicitada: '</span> . <span class="cm-variable-2">$pdoException</span><span class="cm-operator">-&gt;</span><span class="cm-variable">getMessage</span>());</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    }</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">return</span> <span class="cm-atom">null</span>;</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
-</div>
-</div></div></div></div>
-<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 413px;"></div>
-<div class="CodeMirror-gutters" style="display: none; height: 413px;"></div>
-</div>
-</div></pre>
-<p><span>Y ahora hacemos las validaciones:</span></p>
-<p><img src="assets/image-20191122190651796.png" referrerpolicy="no-referrer" alt="image-20191122190651796"></p>
-<p><span>Y modificamos la vista para que nos aparezca un mensaje cuando ya está logeado y el formulario cuando no lo está:</span></p>
-<p><img src="assets/1543345761178.png" referrerpolicy="no-referrer" alt="1543345761178"></p>
-<h2 id="heading-6">
 <a name="logout" class="md-header-anchor"></a><span>Logout</span>
 </h2>
 <p><span>Simplemente hay que cerrar la sesión y redirigir a otra página.</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99731px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -989,17 +927,38 @@ body.typora-export{
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-builtin">session_start</span>();</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-builtin">session_unset</span>();</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-builtin">session_destroy</span>();</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">if</span> (<span class="cm-keyword">isset</span>(<span class="cm-variable-2">$_GET</span>[<span class="cm-string">'returnToUrl'</span>])) {</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">header</span>(<span class="cm-string">'location: '</span> . <span class="cm-variable-2">$_GET</span>[<span class="cm-string">'returnToUrl'</span>]);</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  } <span class="cm-keyword">else</span> {</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-builtin">header</span>(<span class="cm-string">'location: /'</span>);</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  }</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">header</span>(<span class="cm-string">'location: /'</span>);</span></pre>
+<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre></div>
 </div>
 </div></div></div></div>
-<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 212px;"></div>
-<div class="CodeMirror-gutters" style="display: none; height: 212px;"></div>
+<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 166px;"></div>
+<div class="CodeMirror-gutters" style="display: none; height: 166px;"></div>
 </div>
 </div></pre>
+<h2 id="heading-6">
+<a name="formulario-de-login" class="md-header-anchor"></a><span>Formulario de login</span>
+</h2>
+<p><span>Necesitamos crear lo siguiente:</span></p>
+<ul>
+<li><span>Un formulario de login</span></li>
+<li>
+<span>Un método en repositorio de login (</span><code>findByUserNameAndPassword</code><span>) que os permita obtener el usuario (si existe) con dicho nombre y contraseña.</span>
+</li>
+<li>
+<span>Si todo va bien, iniciar la variable de sesión </span><code>$_SESSION['username']</code><span> con el nombre del usuario.</span>
+</li>
+</ul>
+<p><strong><span>Formulario</span></strong></p>
+<p><img src="assets/1543332398462.png" referrerpolicy="no-referrer" alt="1543332398462"></p>
+<p><span>Y ya podemos implementar el formulario de login.</span></p>
+<p><img src="assets/image-20211124083903850.png" referrerpolicy="no-referrer" alt="image-20211124083903850"></p>
+<p><span>El código quedaría como sigue (es una copia de </span><code>executeQuery</code><span> pero con parámetros).</span></p>
+<p><img src="assets/image-20211116192458600.png" referrerpolicy="no-referrer" alt="image-20211116192458600"></p>
+<p><span>Y ahora hacemos las validaciones:</span></p>
+<p><img src="assets/image-20211124084118023.png" referrerpolicy="no-referrer" alt="image-20211124084118023"></p>
+<p><span>Y modificamos la vista para que nos aparezca un mensaje cuando ya está logeado y el formulario cuando no lo está:</span></p>
+<p><img src="assets/1543345761178.png" referrerpolicy="no-referrer" alt="1543345761178"></p>
 <h2 id="heading-7">
 <a name="navegaci%C3%B3n" class="md-header-anchor"></a><span>Navegación</span>
 </h2>
@@ -1021,7 +980,7 @@ body.typora-export{
 <span>No os olvidéis de hacer </span><code>session_start()</code><span> al principio de todos los controladores.</span></p></blockquote>
 <p><span>Falta impedir que usuarios no registrados entren en </span><code>Galería</code><span> y </span><code>Asociados</code><span>. Es tan sencillo como:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99741px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1037,7 +996,7 @@ body.typora-export{
 </div>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-builtin">session_start</span>();</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-keyword">if</span> (<span class="cm-operator">!</span><span class="cm-keyword">isset</span>(<span class="cm-variable-2">$_SESSION</span>[<span class="cm-string">'username'</span>])) {</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php?returnToUrl=/galeria.php'</span>);</span></pre>
+<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php'</span>);</span></pre></div>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     }</span></pre>
 </div>
 </div></div></div></div>
@@ -1063,7 +1022,7 @@ body.typora-export{
 </div>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-builtin">session_start</span>();</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-keyword">if</span> (<span class="cm-operator">!</span><span class="cm-keyword">isset</span>(<span class="cm-variable-2">$_SESSION</span>[<span class="cm-string">'username'</span>])) {</span></pre>
-<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php?returnToUrl=/asociados.php'</span>);</span></pre>
+<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php'</span>);</span></pre></div>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     }</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">   </span></pre>
 </div>
@@ -1086,7 +1045,7 @@ body.typora-export{
 <p><img src="assets/1543346043016.png" referrerpolicy="no-referrer" alt="1543346043016"></p>
 <p><span>Ahora, modificamos el constructor de </span><code>UsuarioRepositorio</code><span>:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1118,7 +1077,7 @@ body.typora-export{
 </div></pre>
 <p><span>Y modificamos </span><code>findByUserNameAndPassword</code><span> para que antes de lanzar la consulta, encripte la contraseña:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99744px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1169,7 +1128,7 @@ body.typora-export{
 </h2>
 <p><span>Vamos a encriptar la contraseña usando </span><code>password_hash()</code><span>.  Básicamente, encripta según el algoritmo que le pasemos como parámetro. Por ejemplo, </span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99744px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1273,6 +1232,33 @@ body.typora-export{
 </div></pre>
 <p><span>Así que el método </span><code>save()</code><span> quedaría como sigue;</span></p>
 <p><img src="assets/image-20191122195707169.png" referrerpolicy="no-referrer" alt="image-20191122195707169"></p>
+<p><span>Aunque se puede refactorizar como:</span></p>
+<pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
+<div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
+<div class="CodeMirror-scroll" tabindex="-1">
+<div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
+<div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div>
+<div class="CodeMirror-measure"></div>
+<div style="position: relative; z-index: 1;"></div>
+<div class="CodeMirror-code" role="presentation" style="">
+<div class="CodeMirror-activeline" style="position: relative;">
+<div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
+<div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">public</span> <span class="cm-keyword">function</span> <span class="cm-def">save</span>(<span class="cm-variable">Entity</span> <span class="cm-variable-2">$entity</span>)</span></pre>
+</div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">{</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$parameters</span> <span class="cm-operator">=</span> <span class="cm-variable-2">$entity</span><span class="cm-operator">-&gt;</span><span class="cm-variable">toArray</span>();</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-variable-2">$entity</span><span class="cm-operator">-&gt;</span><span class="cm-variable">setPassword</span>(<span class="cm-variable-2">$this</span><span class="cm-operator">-&gt;</span><span class="cm-variable">passwordGenerator</span>::<span class="cm-variable">encrypt</span>(<span class="cm-variable-2">$parameters</span>[<span class="cm-string">'password'</span>]));</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-keyword">parent</span>::<span class="cm-variable">save</span>(<span class="cm-variable-2">$entity</span>);    </span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+</div>
+</div></div></div></div>
+<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 143px;"></div>
+<div class="CodeMirror-gutters" style="display: none; height: 143px;"></div>
+</div>
+</div></pre>
 <p><span>Y modificamos </span><code>findByUserNameAndPassword</code><span> para que use </span><code>passwordVerify</code><span>.</span></p>
 <p><img src="assets/image-20211116193516252.png" referrerpolicy="no-referrer" alt="image-20211116193516252"></p>
 <p><span>Ahora para usar un algoritmo de encriptación, simplemente se lo inyectamos en el constructor:</span></p>
@@ -1304,7 +1290,7 @@ body.typora-export{
 <p><span>Ahora es muy sencillo tener diferentes algoritmos de encriptación. Por ejemplo vamos a encriptar usando el algoritmo </span><code>PASSWORD_ARGON2I</code><span>.</span></p>
 <p><span>Sólo hemos de crear una nueva clase que implemente </span><code>IPasswordGenerator</code><span>.  Por ejemplo, creamos la clase </span><code>Argon2PasswordGenerator</code><span>.</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99744px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1349,7 +1335,6 @@ body.typora-export{
 <p><span>Víctor Ponz </span><a href="mailto:victorponz@gmail.com" target="_blank" class="url">victorponz@gmail.com</a></p>
 <p><span>Este material está licenciado bajo una licencia </span><a href="https://creativecommons.org/licenses/by-nc-sa/3.0/"><span>Creative Commons, Attribution-NonCommercial-ShareAlike</span></a></p>
 <p><img src="https://licensebuttons.net/l/by-nc-sa/3.0/88x31.png" referrerpolicy="no-referrer"></p>
-<p> </p>
 <p> </p>
 <p> </p>
 </div>      <div id='custom-footer'>
