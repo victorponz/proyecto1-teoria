@@ -780,12 +780,12 @@ body.typora-export{
 <p><span>Este formulario (</span><code>/register.php</code><span>) nos permite grabar un nuevo usuario en la base de datos.</span></p>
 <p><span>En este caso, fijaos que </span><code>returnToUrl</code><span> lo paso en el </span><code>action</code><span> del formulario.</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99741px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
 <div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
-<div class="CodeMirror-measure"></div>
+<div class="CodeMirror-measure"><span><span>​</span>x</span></div>
 <div class="CodeMirror-measure"></div>
 <div style="position: relative; z-index: 1;"></div>
 <div class="CodeMirror-code" role="presentation" style="">
@@ -846,7 +846,7 @@ body.typora-export{
 <p><img src="assets/image-20211124090542575.png" referrerpolicy="no-referrer" alt="image-20211124090542575"></p>
 <p><span>Y modificamos la vista (</span><code>register.view.php</code><span>):</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99744px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -875,7 +875,7 @@ body.typora-export{
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                    <span class="cm-keyword">include</span> <span class="cm-atom">__DIR__</span> . <span class="cm-string">"/partials/show-messages.part.php"</span>;</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">?&gt;</span></span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;?=</span><span class="cm-variable-2">$form</span><span class="cm-operator">-&gt;</span><span class="cm-variable">render</span>();<span class="cm-operator">?&gt;</span></span></pre>
-<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;</span><span class="cm-variable">a</span> <span class="cm-variable">href</span><span class="cm-operator">=</span><span class="cm-string">'/login.php'</span><span class="cm-operator">&gt;</span></span></pre></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;</span><span class="cm-variable">a</span> <span class="cm-variable">href</span><span class="cm-operator">=</span><span class="cm-string">'/login.php'</span><span class="cm-operator">&gt;</span></span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                    <span class="cm-variable">¿Ya</span> <span class="cm-variable">eres</span> <span class="cm-variable">miembro</span><span class="cm-operator">?</span> <span class="cm-variable">Acceso</span> <span class="cm-variable">a</span> <span class="cm-variable">usuari@s</span></span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;/</span><span class="cm-variable">a</span><span class="cm-operator">&gt;</span></span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-operator">&lt;?</span><span class="cm-variable">php</span> <span class="cm-keyword">endif</span><span class="cm-operator">?&gt;</span></span></pre>
@@ -929,7 +929,7 @@ body.typora-export{
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-builtin">session_destroy</span>();</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-builtin">header</span>(<span class="cm-string">'location: /'</span>);</span></pre>
-<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  </span></pre>
 </div>
 </div></div></div></div>
 <div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 166px;"></div>
@@ -958,7 +958,54 @@ body.typora-export{
 <p><span>Y ahora hacemos las validaciones:</span></p>
 <p><img src="assets/image-20211124084118023.png" referrerpolicy="no-referrer" alt="image-20211124084118023"></p>
 <p><span>Y modificamos la vista para que nos aparezca un mensaje cuando ya está logeado y el formulario cuando no lo está:</span></p>
-<p><img src="assets/1543345761178.png" referrerpolicy="no-referrer" alt="1543345761178"></p>
+<pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" lang="php" style="break-inside: unset;"><div class="CodeMirror cm-s-inner CodeMirror-wrap CodeMirror-focused" lang="php">
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 611.497px; left: 21.2631px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
+<div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
+<div class="CodeMirror-scroll" tabindex="-1">
+<div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;">
+<div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre></div>
+<div class="CodeMirror-measure"></div>
+<div style="position: relative; z-index: 1;"></div>
+<div class="CodeMirror-code" role="presentation" style="">
+<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">&lt;?</span><span class="cm-variable">php</span></span></pre></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">include</span> <span class="cm-atom">__DIR__</span> . <span class="cm-string">"/partials/inicio-doc.part.php"</span>;</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">include</span> <span class="cm-atom">__DIR__</span> . <span class="cm-string">"/partials/nav.part.php"</span>;</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-operator">?&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-variable">id</span><span class="cm-operator">=</span><span class="cm-string">"login"</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-keyword">class</span><span class="cm-operator">=</span><span class="cm-string">"container"</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-operator">&lt;</span><span class="cm-variable">div</span> <span class="cm-keyword">class</span><span class="cm-operator">=</span><span class="cm-string">"col-xs-12 col-sm-8 col-sm-push-2"</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-operator">&lt;</span><span class="cm-variable">h1</span><span class="cm-operator">&gt;</span><span class="cm-variable">LOGIN</span><span class="cm-operator">&lt;/</span><span class="cm-variable">h1</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-operator">&lt;</span><span class="cm-variable">hr</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-operator">&lt;?</span><span class="cm-variable">php</span> <span class="cm-keyword">if</span> (<span class="cm-keyword">isset</span>(<span class="cm-variable-2">$_SESSION</span>[<span class="cm-string">'username'</span>])) :<span class="cm-operator">?&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-variable">Ya</span> <span class="cm-variable">está</span> <span class="cm-variable">logeado</span> <span class="cm-variable">como</span> <span class="cm-operator">&lt;?=</span><span class="cm-variable-2">$_SESSION</span>[<span class="cm-string">'username'</span>]<span class="cm-operator">?&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-operator">&lt;?</span><span class="cm-variable">php</span> <span class="cm-keyword">else</span>: <span class="cm-operator">?&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;?</span><span class="cm-variable">php</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                    <span class="cm-keyword">include</span> <span class="cm-atom">__DIR__</span> . <span class="cm-string">"/partials/show-messages.part.php"</span>;</span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">?&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;?=</span><span class="cm-variable-2">$form</span><span class="cm-operator">-&gt;</span><span class="cm-variable">render</span>();<span class="cm-operator">?&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;</span><span class="cm-variable">a</span> <span class="cm-variable">href</span><span class="cm-operator">=</span><span class="cm-string">'/register.php'</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                    <span class="cm-variable">¿Todavía</span> <span class="cm-variable">no</span> <span class="cm-variable">está</span> <span class="cm-variable">registrad@</span><span class="cm-operator">?</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">                <span class="cm-operator">&lt;/</span><span class="cm-variable">a</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">            <span class="cm-operator">&lt;?</span><span class="cm-variable">php</span> <span class="cm-keyword">endif</span><span class="cm-operator">?&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">        <span class="cm-operator">&lt;/</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">    <span class="cm-operator">&lt;/</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">&lt;/</span><span class="cm-variable">div</span><span class="cm-operator">&gt;</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="">​</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">&lt;?</span><span class="cm-variable">php</span></span></pre>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">  <span class="cm-keyword">include</span> <span class="cm-atom">__DIR__</span> . <span class="cm-string">"/partials/fin-doc.part.php"</span>;</span></pre>
+<div class="CodeMirror-activeline" style="position: relative;">
+<div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
+<div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-operator">?&gt;</span></span></pre>
+</div>
+</div>
+</div></div></div></div>
+<div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 638px;"></div>
+<div class="CodeMirror-gutters" style="display: none; height: 638px;"></div>
+</div>
+</div></pre>
 <h2 id="heading-7">
 <a name="navegaci%C3%B3n" class="md-header-anchor"></a><span>Navegación</span>
 </h2>
@@ -980,7 +1027,7 @@ body.typora-export{
 <span>No os olvidéis de hacer </span><code>session_start()</code><span> al principio de todos los controladores.</span></p></blockquote>
 <p><span>Falta impedir que usuarios no registrados entren en </span><code>Galería</code><span> y </span><code>Asociados</code><span>. Es tan sencillo como:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99741px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -996,7 +1043,7 @@ body.typora-export{
 </div>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-builtin">session_start</span>();</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-keyword">if</span> (<span class="cm-operator">!</span><span class="cm-keyword">isset</span>(<span class="cm-variable-2">$_SESSION</span>[<span class="cm-string">'username'</span>])) {</span></pre>
-<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php'</span>);</span></pre></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php'</span>);</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     }</span></pre>
 </div>
 </div></div></div></div>
@@ -1006,7 +1053,7 @@ body.typora-export{
 </div></pre>
 <p><span>en </span><code>galeria.php</code><span> y </span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1022,7 +1069,7 @@ body.typora-export{
 </div>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-builtin">session_start</span>();</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     <span class="cm-keyword">if</span> (<span class="cm-operator">!</span><span class="cm-keyword">isset</span>(<span class="cm-variable-2">$_SESSION</span>[<span class="cm-string">'username'</span>])) {</span></pre>
-<div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php'</span>);</span></pre></div>
+<pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">       <span class="cm-builtin">header</span>(<span class="cm-string">'location: /login.php'</span>);</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">     }</span></pre>
 <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;">   </span></pre>
 </div>
@@ -1077,7 +1124,7 @@ body.typora-export{
 </div></pre>
 <p><span>Y modificamos </span><code>findByUserNameAndPassword</code><span> para que antes de lanzar la consulta, encripte la contraseña:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99744px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1100,7 +1147,7 @@ body.typora-export{
 </div></pre>
 <p><span>Y, por último, modificamos </span><code>login.php</code><span>  y </span><code>register.php</code><span> para pasar el encriptador de texto plano al constructor de </span><code>UsuarioRepositorio</code><span>.</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1128,7 +1175,7 @@ body.typora-export{
 </h2>
 <p><span>Vamos a encriptar la contraseña usando </span><code>password_hash()</code><span>.  Básicamente, encripta según el algoritmo que le pasemos como parámetro. Por ejemplo, </span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99731px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1148,7 +1195,7 @@ body.typora-export{
 </div></pre>
 <p><span>Produciría el siguiente hash:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1168,7 +1215,7 @@ body.typora-export{
 </div></pre>
 <p><span>Pero este hash, no siempre es el mismo porque el propio algoritmo </span><strong><span>bcrypt</span></strong><span> le aplica un salt distinto cada vez. Por tanto la siguiente vez, nos puede devolver:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang=""><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1212,7 +1259,7 @@ body.typora-export{
 <p><img src="assets/1543346147396.png" referrerpolicy="no-referrer" alt="1543346147396"></p>
 <p><span>Pero antes de continuar, hemos de modificar el método </span><code>save()</code><span> de </span><code>UsuarioRepositorio</code><span> para que encripte la contraseña. Para ello, copiamos el método </span><code>save()</code><span> de </span><code>QueryBuilder</code><span> y lo modificamos, añadiendo la línea:</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 3.99744px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99756px; left: 3.99744px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1265,7 +1312,7 @@ body.typora-export{
 <blockquote><p><strong><span>Nota</span></strong><span>. Antes de cambiar el algoritmo de encriptación, debemos borrar todos los usuarios de la base de datos. De otra forma los antiguos no se podrán logear. En </span><strong><span>producción</span></strong><span> es evidente que no se puede proceder de esta forma. Os dejo un artículo de </span><a href="https://stackoverflow.com/questions/5249350/changing-encryption-algorithm"><span>stack overflow</span></a><span> sobre el tema.</span></p></blockquote>
 <p><span>Por ejemplo, en </span><code>login.php</code><span> y </span><code>register.php</code></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99738px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
@@ -1290,7 +1337,7 @@ body.typora-export{
 <p><span>Ahora es muy sencillo tener diferentes algoritmos de encriptación. Por ejemplo vamos a encriptar usando el algoritmo </span><code>PASSWORD_ARGON2I</code><span>.</span></p>
 <p><span>Sólo hemos de crear una nueva clase que implemente </span><code>IPasswordGenerator</code><span>.  Por ejemplo, creamos la clase </span><code>Argon2PasswordGenerator</code><span>.</span></p>
 <pre spellcheck="false" class="md-fences md-end-block ty-contain-cm modeLoaded" lang="php"><div class="CodeMirror cm-s-inner CodeMirror-wrap" lang="php">
-<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99744px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
+<div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 3.99707px; left: 4.16669px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div>
 <div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div>
 <div class="CodeMirror-gutter-filler" cm-not-content="true"></div>
 <div class="CodeMirror-scroll" tabindex="-1">
